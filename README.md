@@ -87,13 +87,13 @@ cd llama-gpt
 Run LlamaGPT with the following command:
 
 ```
-./run-mac.sh --model 7b
+./run-mac.sh --model llama2-7b
 ```
 
 You can access LlamaGPT at http://localhost:3000.
 
-> To run 13B or 70B chat models, replace `7b` with `13b` or `70b` respectively.
-> To run 7B, 13B or 34B Code Llama models, replace `7b` with `code-7b`, `code-13b` or `code-34b` respectively.
+> To run the Chat llama2 13B or 70B models, replace `llama2-7b` with `llama2-13b` or `llama2-70b` respectively.
+> To run Code Llama 7B, 13B or 34B models, replace `llama2-7b` with `code-7b`, `code-13b` or `code-34b` respectively.
 
 To stop LlamaGPT, do `Ctrl + C` in Terminal.
 
@@ -111,19 +111,19 @@ cd llama-gpt
 Run LlamaGPT with the following command:
 
 ```
-./run.sh --model 7b
+./run.sh --model llama2-7b
 ```
 
 Or if you have an Nvidia GPU, you can run LlamaGPT with CUDA support using the `--with-cuda` flag, like:
 
 ```
-./run.sh --model 7b --with-cuda
+./run.sh --model llama2-7b --with-cuda
 ```
 
 You can access LlamaGPT at `http://localhost:3000`.
 
-> To run 13B or 70B chat models, replace `7b` with `13b` or `70b` respectively.
-> To run Code Llama 7B, 13B or 34B models, replace `7b` with `code-7b`, `code-13b` or `code-34b` respectively.
+> To run the Chat llama2 13B or 70B models, replace `llama2-7b` with `llama2-13b` or `llama2-70b` respectively.
+> To run Code Llama 7B, 13B or 34B models, replace `llama2-7b` with `code-7b`, `code-13b` or `code-34b` respectively.
 
 To stop LlamaGPT, do `Ctrl + C` in Terminal.
 

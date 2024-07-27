@@ -108,11 +108,13 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-# If no model is passed, default to 7b model
+supported_models="llama2-7b, llama2-13b, llama2-70b, code-7b, code-13b, code-34b"
+
+# If no model is passed, default to llama2-7b model
 if [[ -z "$MODEL" ]]; then
-    echo "No model value provided. Defaulting to 7b. If you want to change the model, exit the script and use --model to provide the model value."
-    echo "Supported models are 7b, 13b, 70b, code-7b, code-13b, code-34b."
-    MODEL="7b"
+    echo "No model value provided. Defaulting to llama2-7b. If you want to change the model, exit the script and use --model to provide the model value."
+    echo "Supported models are $supported_models."
+    MODEL="llama2-7b"
 fi
 
 # Get the number of available CPU cores and subtract 2
@@ -134,18 +136,18 @@ model_type="gguf"
 
 # Set values for MODEL and MODEL_DOWNLOAD_URL based on the model passed
 case $MODEL in
-    7b) 
+    llama2-7b) 
         MODEL="./models/llama-2-7b-chat.bin"
         MODEL_DOWNLOAD_URL="https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GGML/resolve/main/nous-hermes-llama-2-7b.ggmlv3.q4_0.bin"
         model_type="ggml"
         ;;
-    13b) 
+    llama2-13b) 
         MODEL="./models/llama-2-13b-chat.bin"
         MODEL_DOWNLOAD_URL="https://huggingface.co/TheBloke/Nous-Hermes-Llama2-GGML/resolve/main/nous-hermes-llama2-13b.ggmlv3.q4_0.bin"
         model_type="ggml"
         n_gpu_layers=2
         ;;
-    70b) 
+    llama2-70b) 
         MODEL="./models/llama-2-70b-chat.bin"
         MODEL_DOWNLOAD_URL="https://huggingface.co/TheBloke/Llama-2-70B-Chat-GGML/resolve/main/llama-2-70b-chat.ggmlv3.q4_0.bin"
         model_type="ggml"
@@ -177,7 +179,8 @@ case $MODEL in
         N_GQA=8
         ;;
     *) 
-        echo "Invalid model passed: $MODEL"; exit 1 
+        echo "Invalid model $MODEL provided. Supported models are $supported_models."
+        exit 1 
         ;;
 esac
 

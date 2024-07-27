@@ -18,33 +18,35 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
+supported_models="llama2-7b, llama2-13b, llama2-70b, code-7b, code-13b, code-34b"
+
 # Check if model value is provided
 if [ -z "$model" ]
 then
-    echo "No model value provided. Defaulting to 7b. If you want to change the model, exit the script and use --model to provide the model value."
-    echo "Supported models are 7b, 13b, 70b, code-7b, code-13b, code-34b."
-    model="7b"
+    echo "No model value provided. Defaulting to llama2-7b. If you want to change the model, exit the script and use --model to provide the model value."
+    echo "Supported models are $supported_models."
+    model="llama2-7b"
 fi
 
 model_type="gguf"
 
 # Export the model value as an environment variable
 case $model in
-    7b)
+    llama2-7b)
         export MODEL_NAME="llama-2-7b-chat.bin"
         export MODEL_DOWNLOAD_URL="https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GGML/resolve/main/nous-hermes-llama-2-7b.ggmlv3.q4_0.bin"
         export WAIT_TIMEOUT=3600
         export N_GQA=1
         model_type="ggml"
         ;;
-    13b)
+    llama2-13b)
         export MODEL_NAME="llama-2-13b-chat.bin"
         export MODEL_DOWNLOAD_URL="https://huggingface.co/TheBloke/Nous-Hermes-Llama2-GGML/resolve/main/nous-hermes-llama2-13b.ggmlv3.q4_0.bin"
         export WAIT_TIMEOUT=10800
         export N_GQA=1
         model_type="ggml"
         ;;
-    70b)
+    llama2-70b)
         export MODEL_NAME="llama-2-70b-chat.bin"
         export MODEL_DOWNLOAD_URL="https://huggingface.co/TheBloke/Nous-Hermes-Llama2-70B-GGML/resolve/main/nous-hermes-llama2-70b.ggmlv3.Q4_0.bin"
         export WAIT_TIMEOUT=21600
@@ -82,7 +84,7 @@ case $model in
         export N_GQA=8
         ;;
     *)
-        echo "Invalid model value provided. Supported models are 7b, 13b, 70b, code-7b, code-13b, code-34b."
+        echo "Invalid model '$model' provided. Supported models are $supported_models."
         exit 1
         ;;
 esac
